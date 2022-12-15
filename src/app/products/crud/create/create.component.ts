@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Product } from 'src/app/model/product';
 import { ApiServiceService } from 'src/app/services/api-service.service';
 
@@ -12,7 +13,9 @@ export class CreateComponent implements OnInit {
   price: number;
   quantity: number;
   products: Product[] = [];
-  constructor(private _ApiServiceService: ApiServiceService) {
+  datosVaciosBol = false;
+  datosVacios = "ningun Dato puede ser vacio";
+  constructor(private _ApiServiceService: ApiServiceService,  private router: Router) {
     this.name = "";
     this.price = 0;
     this.quantity = 0;
@@ -26,8 +29,14 @@ export class CreateComponent implements OnInit {
       price: this.price,
       quantity: this.quantity
     }
+
+    if(this.name == '' || this.price <= 0 || this.quantity <= 0){
+      this.datosVaciosBol = true;
+    }else{
     this._ApiServiceService.addProducto(productNew).subscribe(response =>{
       console.log(response);
     })
+    this.router.navigate(['/productos'])
+  }
   }
 }
