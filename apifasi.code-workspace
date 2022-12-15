@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "apifasi",
+			"path": "../../../xampp/htdocs/apifasi"
+		},
+		{
+			"name": "proyecto3",
+			"path": "."
+		}
+	],
+	"settings": {}
+}
