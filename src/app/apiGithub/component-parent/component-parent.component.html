@@ -1,0 +1,14 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <div class="row">
+    <h1 class="text-center">Bienvenido</h1>
+    <h6 class="text-center">Api de github con angular en la cual Buscamos a las personas y traemos datos de esta con
+      ayuda de esta api</h6>
+    <br><br><br>
+    <app-search-person class="col-5" (parametrosSeleccionados)="searchPerson($event)"></app-search-person>
+    <app-show-date-person class="col-5" [persondate]="listPerson" *ngIf="cargado"></app-show-date-person>
+    <div class="spinner-border text-primary mx-auto" style="width: 100px; height: 100px;" role="status" *ngIf="loading">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+  </div>

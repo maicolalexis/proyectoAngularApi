@@ -1,0 +1,23 @@
+<div class="container">
+    <form (click)="saving()" method="post">
+        <fieldset>
+            <div class="row justify-content-center">
+                <legend>Form for create products</legend>
+                <div class="form-group col-6">
+                    <label for="name" class="form-label mt-4">name Product</label>
+                    <input [(ngModel)]="name" [ngModelOptions]="{standalone: true}" type="text" id="name" class="form-control" placeholder="Enter Name Product" />
+                </div>
+                <div class="form-group col-6">
+                    <label for="price" class="form-label mt-4">Price Product</label>
+                    <input [(ngModel)]="price" [ngModelOptions]="{standalone: true}" type="number" id="price" class="form-control" placeholder="Enter Price Product" />
+                </div>
+
+                <div class="form-group text-center col-6">
+                    <label for="quantity" class="form-label mt-4">quantity</label>
+                    <input [(ngModel)]="quantity" [ngModelOptions]="{standalone: true}" type="number" id="quantity" class="form-control" placeholder="Enter quantityt" />
+                </div>
+                <button type="submit" class="btn btn-primary">save</button>
+            </div>
+        </fieldset>
+    </form>
+</div>
