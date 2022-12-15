@@ -15,7 +15,7 @@ class Controller{
                  "id" => $row['id'],
                  "name" => $row['name'],
                  "price" => $row['price'],
-                 "quantity" => $row['quantity'] );
+                 "quantity" => $row['quantity']);
         }//fin del ciclo while 
 
         return $list;
@@ -26,8 +26,23 @@ class Controller{
   }
   public function addProduct($producto){
     print_r($producto['json']);
-    $datos = $producto['json'];
-    print_r($datos['name']);
+
+    $separateJson = $producto['json'];
+    $Json_decode = json_decode($separateJson);
+    $dataProduct = get_object_vars($Json_decode);
+    print_r($dataProduct);
+    $name = $dataProduct['name'];
+    $price = $dataProduct['price'];
+    $quantity = $dataProduct['quantity'];
+    try{
+    $conexion = new Conexion();
+    $db = $conexion->getConexion();
+    $query = ("INSERT INTO product (name, price, quantity)values ('$name', $price, $quantity)");
+    $statement = $db->prepare($query);
+    $statement->execute();
+    }catch(PDOException $e){
+      echo "¡Error!: " . $e->getMessage() . "<br/>"; 
+    }
   }
 }
 
