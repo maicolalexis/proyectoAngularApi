@@ -12,11 +12,11 @@ class Conexion {
            return $db;
 
          }catch(PDOException $e){
-           
+
             echo "¡Error!: " . $e->getMessage() . "<br/>";
-            die(); 
+            die();
          }
-       
+
   }
 
 }

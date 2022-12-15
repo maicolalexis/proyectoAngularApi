@@ -22,7 +22,7 @@ switch ($methodHTTP) {
     break;
     };
 
-  
 
-    
+
+
     ?>
