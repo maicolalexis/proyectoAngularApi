@@ -20,9 +20,10 @@ switch ($methodHTTP) {
     $result = $ctl->addProduct($data);
     echo json_encode([ "products" => $result]);
     break;
+
+    case 'DELETE':
+      print_r('hola');
     };
-
-
 
 
     ?>

@@ -14,13 +14,13 @@ export class CreateComponent implements OnInit {
   quantity: number;
   products: Product[] = [];
   repos = "";
-  errorMessage = "";
+  clickedForm = false;
   datosVaciosBol = false;
   datosVacios = "ningun Dato puede ser vacio";
   constructor(private _ApiServiceService: ApiServiceService, private router: Router) {
     this.name = "";
-    this.price = 0;
-    this.quantity = 0;
+    this.price = NaN;
+    this.quantity = NaN;
 
   }
 
@@ -35,12 +35,15 @@ export class CreateComponent implements OnInit {
 
     if (this.name == '' || this.price <= 0 || this.quantity <= 0) {
       this.datosVaciosBol = true;
+      this.clickedForm = false;
     } else {
       this._ApiServiceService.addProducto(productNew).subscribe(
         response =>{
           console.log(response)
           const { products } = response
-          this.products = products;                      
+          this.products = products;
+          this.clickedForm = true;
+          this.datosVaciosBol = false;
         })
           setTimeout(() => {
             this.router.navigate(['/productos'])//will redirect to your blog page (an ex: blog.html)

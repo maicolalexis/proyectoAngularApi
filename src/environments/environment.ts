@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost/proyectosAngular/proyectoAngularApi/apifasi/',
+  baseUrl: 'http://localhost/proyectosAngular/proyectoAngularApi/apifasi',
 };
 export const enviromentCreate = {
   baseUrl: 'http://localhost/apifasi/create',

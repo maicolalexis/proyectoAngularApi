@@ -9,17 +9,30 @@ import { environment } from 'src/environments/environment';
 export class ApiServiceService {
 
   baseUrl = environment.baseUrl;
-  constructor(public http: HttpClient) {}
-    getProducts(){
-      return this.http.get<any>(this.baseUrl);
+  constructor(public http: HttpClient) { }
+  getProducts() {
+    return this.http.get<any>(this.baseUrl +"/");
   }
-  addProducto(producto: any): Observable<any>{
+  addProducto(producto: any): Observable<any> {
     let json = JSON.stringify(producto);
-    let params = "json="+json;
-    let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
-
-    return this.http.post<any>(this.baseUrl, params, {headers: headers});
-}
+    let params = "json=" + json;
+    let httpheaders=new HttpHeaders()
+    .set('Content-type','application/Json');
+    let options={
+      headers:httpheaders
+    };
+    return this.http.post<any>(this.baseUrl+"/", params, options);
+  }
+  deleteProduct(producto: any)   {
+    let json = JSON.stringify(producto);
+    let params = "json=" + json;
+    let httpheader=new HttpHeaders()
+    .set('Content-type','application/Json');
+    let options={
+      headers:httpheader,
+    };
+    return this.http.delete(this.baseUrl + "/" + producto);
+  }
 
 
 }

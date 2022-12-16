@@ -7,16 +7,16 @@ class Controller{
         $list = array();
         $conexion = new Conexion();
         $db = $conexion->getConexion();
-        $query = "SELECT * FROM product ORDER BY name";
+        $query = "SELECT * FROM product ORDER BY id";
         $statement = $db->prepare($query);
         $statement->execute();
         while($row = $statement->fetch()) {
            $list[] = array(
-                 "id" => $row['id'],
+                 "identificador" => $row['id'],
                  "name" => $row['name'],
                  "price" => $row['price'],
                  "quantity" => $row['quantity']);
-        }//fin del ciclo while 
+        }//fin del ciclo while
 
         return $list;
 
@@ -33,7 +33,7 @@ class Controller{
     $name = $dataProduct['name'];
     $price = $dataProduct['price'];
     $quantity = $dataProduct['quantity'];
-    
+
     $conexion = new Conexion();
     $db = $conexion->getConexion();
     $query = ("INSERT INTO product (name, price, quantity)values ('$name', $price, $quantity)");
@@ -44,6 +44,9 @@ class Controller{
       echo "¡Error!: " . $e->getMessage() . "<br/>";
       return "error";
     }
+  }
+  public function deleteProduct(){
+
   }
 }
 
