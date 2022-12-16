@@ -18,7 +18,7 @@ export class ApiServiceService {
     let params = "json="+json;
     let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
 
-    return this.http.post(this.baseUrl, params, {headers: headers});
+    return this.http.post<any>(this.baseUrl, params, {headers: headers});
 }
 
 

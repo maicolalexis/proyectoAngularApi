@@ -18,7 +18,7 @@ switch ($methodHTTP) {
     $data = $_POST;
     $ctl = new Controller();
     $result = $ctl->addProduct($data);
-    echo $result;
+    echo json_encode([ "products" => $result]);
     break;
     };
 

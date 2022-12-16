@@ -13,30 +13,41 @@ export class CreateComponent implements OnInit {
   price: number;
   quantity: number;
   products: Product[] = [];
+  repos = "";
+  errorMessage = "";
   datosVaciosBol = false;
   datosVacios = "ningun Dato puede ser vacio";
-  constructor(private _ApiServiceService: ApiServiceService,  private router: Router) {
+  constructor(private _ApiServiceService: ApiServiceService, private router: Router) {
     this.name = "";
     this.price = 0;
     this.quantity = 0;
-   }
+
+  }
 
   ngOnInit(): void {
   }
-  saving():void{
+  saving(): void {
     const productNew = {
       name: this.name,
       price: this.price,
       quantity: this.quantity
     }
 
-    if(this.name == '' || this.price <= 0 || this.quantity <= 0){
+    if (this.name == '' || this.price <= 0 || this.quantity <= 0) {
       this.datosVaciosBol = true;
-    }else{
-    this._ApiServiceService.addProducto(productNew).subscribe(response =>{
-      console.log(response);
-    })
-    this.router.navigate(['/productos'])
-  }
-  }
-}
+    } else {
+      this._ApiServiceService.addProducto(productNew).subscribe(
+        response =>{
+          console.log(response)
+          const { products } = response
+          this.products = products;                      
+        })
+          setTimeout(() => {
+            this.router.navigate(['/productos'])//will redirect to your blog page (an ex: blog.html)
+          }, 1000)
+        }
+      }
+    }
+
+
+
