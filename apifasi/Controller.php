@@ -24,16 +24,16 @@ class Controller{
         echo "¡Error!: " . $e->getMessage() . "<br/>";
       }
   }
-  public function addProduct($producto){
-    try{
-    $separateJson = $producto['json'];
+  public function addProduct($prod){
+    print_r("hola". $prod);
+    $separateJson = $prod['json'];
     $Json_decode = json_decode($separateJson);
     $dataProduct = get_object_vars($Json_decode);
 
     $name = $dataProduct['name'];
     $price = $dataProduct['price'];
     $quantity = $dataProduct['quantity'];
-
+    try{
     $conexion = new Conexion();
     $db = $conexion->getConexion();
     $query = ("INSERT INTO product (name, price, quantity)values ('$name', $price, $quantity)");
@@ -45,8 +45,19 @@ class Controller{
       return "error";
     }
   }
-  public function deleteProduct(){
-
+  public function deleteProduct($producto){
+    try{
+      $id = $producto['id'];
+      $conexion = new Conexion();
+      $db = $conexion->getConexion();
+      $query = "DELETE FROM product WHERE id = $id";
+      $statement = $db->prepare($query);
+      $statement->execute();
+      return true;
+      }catch(PDOException $e){
+        echo "¡Error!: " . $e->getMessage() . "<br/>";
+        return false;
+      }
   }
 }
 
