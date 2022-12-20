@@ -11,6 +11,9 @@ import { ShowDatePersonComponent } from './apiGithub/show-date-person/show-date-
 import { ComponentParentComponent } from './apiGithub/component-parent/component-parent.component'
 import { FormsModule } from '@angular/forms';
 import { CreateComponent } from './products/crud/create/create.component';
+import { FormularioComponent } from './products/crud/formulario/formulario.component';
+import { UpdateComponent } from './products/crud/update/update.component';
+
 
 @NgModule({
   declarations: [
@@ -21,6 +24,8 @@ import { CreateComponent } from './products/crud/create/create.component';
     ShowDatePersonComponent,
     ComponentParentComponent,
     CreateComponent,
+    FormularioComponent,
+    UpdateComponent,
   ],
   imports: [
     BrowserModule,

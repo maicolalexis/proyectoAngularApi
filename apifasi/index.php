@@ -27,4 +27,7 @@ switch ($methodHTTP) {
     $result = $ctl->deleteProduct($data);
     echo json_encode(["products" => $result]);
     break;
+    case 'PUT':
+      $data = $_GET;
+
 };

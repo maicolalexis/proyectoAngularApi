@@ -24,16 +24,16 @@ class Controller{
         echo "¡Error!: " . $e->getMessage() . "<br/>";
       }
   }
-  public function addProduct($prod){
-    print_r("hola". $prod);
-    $separateJson = $prod['json'];
+  public function addProduct($producto){
+    try{
+    $separateJson = $producto['json'];
     $Json_decode = json_decode($separateJson);
     $dataProduct = get_object_vars($Json_decode);
 
     $name = $dataProduct['name'];
     $price = $dataProduct['price'];
     $quantity = $dataProduct['quantity'];
-    try{
+
     $conexion = new Conexion();
     $db = $conexion->getConexion();
     $query = ("INSERT INTO product (name, price, quantity)values ('$name', $price, $quantity)");

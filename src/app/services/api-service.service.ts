@@ -17,11 +17,9 @@ export class ApiServiceService {
   addProducto(producto: any): Observable<any> {
     let json = JSON.stringify(producto);
     let params = "json=" + json;
-    let httpheaders = new HttpHeaders().set('Content-type', 'application/Json');
-    let options = {
-      headers: httpheaders
-    };
-    return this.http.post<any>(this.baseUrl, params, options);
+    let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
+
+    return this.http.post<any>(this.baseUrl, params, {headers: headers});
   }
   deleteProduct(producto: any): Observable<any> {
     console.log(producto)
@@ -29,6 +27,12 @@ export class ApiServiceService {
     httpParams.set('bbb', '222');
     let options = { params: httpParams };
     return this.http.delete<any>(this.baseUrl, options)
+  }
+  putProduct(producto: any, id: number){
+    let json = JSON.stringify(producto);
+    let params = "json=" + json;
+    let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
+    return this.http.put(this.baseUrl + "?id="+ id, producto, {headers: headers});
   }
 
 
