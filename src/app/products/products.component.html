@@ -17,7 +17,7 @@
           <td>{{product.name}}</td>
           <td>{{product.price}}</td>
           <td>{{product.quantity}}</td>
-          <td><a  class="btn btn-success ml-2" routerLink="/productos/edit/:{{product.identificador}}" [routerLinkActive]="['active']" >edit</a>
+          <td><a  class="btn btn-success ml-2" routerLink="/productos/edit/{{product.identificador}}" [routerLinkActive]="['active']" >edit</a>
             <form method="POST" (click)="deleteProduct(product.identificador)">
                 <button type="submit" class="btn btn-danger ml-2" >delete</button>
           </form>

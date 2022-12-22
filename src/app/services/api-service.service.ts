@@ -14,6 +14,13 @@ export class ApiServiceService {
   getProducts() {
     return this.http.get<any>(this.baseUrl);
   }
+  getOneProduct(id: number){
+
+    let httpParams = new HttpParams().set('id', id);
+    httpParams.set('bbb', '222');
+    let options = { params: httpParams };
+    return this.http.get<any>(this.baseUrl, options);
+  }
   addProducto(producto: any): Observable<any> {
     let json = JSON.stringify(producto);
     let params = "json=" + json;
@@ -28,11 +35,15 @@ export class ApiServiceService {
     let options = { params: httpParams };
     return this.http.delete<any>(this.baseUrl, options)
   }
-  putProduct(producto: any, id: number){
-    let json = JSON.stringify(producto);
-    let params = "json=" + json;
-    let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
-    return this.http.put(this.baseUrl + "?id="+ id, producto, {headers: headers});
+  putProduct(data: any): Observable<any>{
+    const body = new URLSearchParams();
+    body.set('name', data.name);
+    body.set('price', data.price);
+    body.set('quantity', data.quantity);
+    const options = {
+      headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded'),
+    };
+    return this.http.put<any>(this.baseUrl,body.toString(), options);
   }
 
 

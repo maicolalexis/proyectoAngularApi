@@ -2,8 +2,10 @@
 
 class Controller{
 
-  public function getProducts(){
-   try{
+  public function getProducts($id){
+    if(empty($id)){
+    try{
+
         $list = array();
         $conexion = new Conexion();
         $db = $conexion->getConexion();
@@ -23,6 +25,30 @@ class Controller{
       }catch(PDOException $e){
         echo "¡Error!: " . $e->getMessage() . "<br/>";
       }
+    }else{
+      $identificador = $id['id'];
+      try{
+
+        $list = array();
+        $conexion = new Conexion();
+        $db = $conexion->getConexion();
+        $query = "SELECT * FROM product where id = $identificador ORDER BY id";
+        $statement = $db->prepare($query);
+        $statement->execute();
+        while($row = $statement->fetch()) {
+           $list[] = array(
+                 "identificador" => $row['id'],
+                 "name" => $row['name'],
+                 "price" => $row['price'],
+                 "quantity" => $row['quantity']);
+        }//fin del ciclo while
+
+        return $list;
+
+      }catch(PDOException $e){
+        echo "¡Error!: " . $e->getMessage() . "<br/>";
+      }
+    }
   }
   public function addProduct($producto){
     try{
@@ -58,6 +84,10 @@ class Controller{
         echo "¡Error!: " . $e->getMessage() . "<br/>";
         return false;
       }
+  }
+  public function UpdateProduct($producto){
+   print_r($producto);
+
   }
 }
 

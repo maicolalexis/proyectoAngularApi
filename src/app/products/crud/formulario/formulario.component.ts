@@ -30,12 +30,12 @@ export class FormularioComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    console.log(id);
+    this.id = Number(this.route.snapshot.paramMap.get('id'));
   }
   submit(): void {
     console.log(this.router.url);
     const productNew = {
+      id: this.id,
       name: this.name,
       price: this.price,
       quantity: this.quantity
@@ -54,8 +54,8 @@ export class FormularioComponent implements OnInit {
           this.clickedForm = true;
           this.datosVaciosBol = false;
         })
-      }else if(this.router.url == '/productos/edit'){
-        this._ApiServiceService.putProduct(productNew, this.id).subscribe(
+      }else{
+        this._ApiServiceService.putProduct(productNew).subscribe(
           response =>{
             console.log(response)
             this.clickedForm = true;
